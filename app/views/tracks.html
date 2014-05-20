@@ -1,4 +1,9 @@
 
-<ul>
-  <li ng-repeat="track in tracks">{{ track.origin.title }} by {{ track.origin.user.username }}</li>
+<ul class="tracks">
+  <li ng-repeat="track in tracks">
+    <div class="artwork" background-image="{{ track.origin.artwork }}"></div>
+
+    {{ track.origin.title }} by {{ track.origin.user.username }}
+
+  </li>
 </ul>

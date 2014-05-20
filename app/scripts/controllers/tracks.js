@@ -1,31 +1,26 @@
 'use strict';
 
 angular.module('soundcloudPlayerApp')
-  .controller('TracksCtrl', function ($scope, $stateParams, Account) {
+  .controller('TracksCtrl', function ($scope, $stateParams, Account, Tracks) {
 
-    $scope.tracks = [];
-
-    var url = '',
-        username,
-        resource;
+    var query;
 
     if ($stateParams.user === 'me' && $stateParams.playlist === 'stream') {
-      url = '/me/activities/tracks/affiliated.json';
+      query = Tracks.getStream();
     }
     else {
-      username = ($stateParams.user === 'me' ? Account.profile.permalink : $stateParams.user),
-      resource = ($stateParams.playlist === 'favorites' ? '/favorites' : '/playlists/' + $stateParams.playlist );
-      url = '/users/' + username + resource + '.json';
+      var username = ($stateParams.user === 'me' ? Account.profile.permalink : $stateParams.user);
+
+      if ($stateParams.playlist === 'favorites') {
+        query = Tracks.getFavorites(username);
+      }
+      else {
+        query = Tracks.getFromSet(set, username);
+      }
     }
 
-    SC.get(url, function(result, error){
-      if(error){
-        alert('Error: ' + error.message);
-      }else{
-        $scope.$apply(function () {
-          $scope.tracks = result.length ? result : result.collection;
-        });
-      }
+    query.then(function (tracks) {
+      $scope.tracks = tracks;
     });
 
   });
