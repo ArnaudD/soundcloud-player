@@ -3,7 +3,13 @@
 angular.module('soundcloudPlayerApp')
   .service('Account', function ($q) {
 
-    function loadProfile (deferred, account) {
+    var account = {
+      accessToken: null,
+      connected: false,
+      profile: null
+    };
+
+    function loadProfile (deferred) {
       SC.get('/me.json', function(result, error){
         if(error){
           deferred.reject(error.message);
@@ -14,33 +20,31 @@ angular.module('soundcloudPlayerApp')
       });
     }
 
-    return {
-      accessToken: null,
-      connected: false,
-      profile: null,
+    account.connect = function (force) {
+      var deferred = $q.defer();
 
-      connect: function (force) {
-        var that = this,
-            deferred = $q.defer();
-
-        if (SC.isConnected()) {
-          loadProfile(deferred, that);
-          return deferred.promise;
-        }
-
-        if (force === false) {
-          deferred.reject();
-          return deferred.promise;
-        }
-
-        SC.connect(function(){
-          that.connected = true;
-          that.accessToken = SC.accessToken();
-          loadProfile(deferred, that);
-        });
-
+      if (SC.isConnected()) {
+        account.connected = true;
+        loadProfile(deferred);
         return deferred.promise;
       }
-    }
+
+      if (force === false) {
+        deferred.reject('not connected');
+        return deferred.promise;
+      }
+
+      SC.connect(function(){
+        account.connected = true;
+        account.accessToken = SC.accessToken();
+        loadProfile(deferred, account);
+      });
+
+      return deferred.promise;
+    };
+
+    account.connect(false);
+
+    return account;
 
   });
