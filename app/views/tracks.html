@@ -1,9 +1,11 @@
 
 <ul class="tracks">
   <li ng-repeat="track in tracks">
-    <div class="artwork" background-image="{{ track.origin.artwork }}"></div>
+    <div class="artwork" style="background-image:url({{ track.origin.artwork_url }})"></div>
 
-    {{ track.origin.title }} by {{ track.origin.user.username }}
+    <span class="title">{{ track.origin.title }}</span><span class="author">{{ track.origin.user.username }}</span>
+
+    <span class="created-at" am-time-ago="track.origin.created_at"></span>
 
   </li>
 </ul>

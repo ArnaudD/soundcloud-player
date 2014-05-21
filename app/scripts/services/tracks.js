@@ -21,15 +21,15 @@ angular.module('soundcloudPlayerApp')
     return {
 
       getFavorites: function (username) {
-        return fetch('/users/' + username + '/favorites.json');
+        return fetch('/users/' + username + '/favorites.json?limit=200');
       },
 
       getFromSet: function (set, username) {
-        return fetch('/users/' + username + '/playlists/' + set + '.json');
+        return fetch('/users/' + username + '/playlists/' + set + '.json?limit=200');
       },
 
       getStream: function () {
-        return fetch('/me/activities/tracks/affiliated.json');
+        return fetch('/me/activities/tracks/affiliated.json?limit=200');
       }
     }
 

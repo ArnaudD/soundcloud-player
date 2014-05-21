@@ -1,4 +1,5 @@
 
+$artwork-size: 44px;
 
 .tracks {
   margin: 0;
@@ -7,15 +8,31 @@
   li {
     list-style: none;
     margin: 0;
-    padding: 12px 20px;
+    padding: 12px 20px 12px ($artwork-size + 12px);
     border-bottom: 1px solid #F5F5F5;
+    position: relative
   }
 
   .artwork {
-    $size: 30px;
-    width: $size;
-    height: $size;
+    width: $artwork-size;
+    height: $artwork-size;
     background-size: 100% auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .author {
+    color: #888;
+    &:before {
+      content: '-';
+      margin: 0 6px;
+    }
+  }
+
+  .created-at {
+    color: #D5D5D5;
+    float: right;
   }
 
 }

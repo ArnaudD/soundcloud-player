@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('soundcloudPlayerApp', [
-  'ui.router'
+  'ui.router',
+  'angularMoment'
 ])
 
   .run(function ($rootScope, $state) {
@@ -13,7 +14,7 @@ angular.module('soundcloudPlayerApp', [
     });
 
   })
-  .config(function($stateProvider, $urlRouterProvider) {
+  .config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
 
     var accountResolver = {
       account: function (Account) {
@@ -51,5 +52,12 @@ angular.module('soundcloudPlayerApp', [
         controller: 'TracksCtrl',
         resolve: accountResolver
       });
+
+      $sceDelegateProvider.resourceUrlWhitelist([
+       'self',
+       'https://*.sndcdn.com/**',
+       'http://*.soundcloud.com/**'
+      ]);
+
   });
 
