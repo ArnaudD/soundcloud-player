@@ -1,7 +1,9 @@
 
 <ul class="tracks">
   <li ng-repeat="track in tracks">
-    <div class="artwork" style="background-image:url({{ track.origin.artwork_url }})"></div>
+    <div class="artwork" style="background-image:url({{ track.origin.artwork_url }})">
+      <a class="play-button" ng-click="play(track.origin)"><i class="fa fa-play-circle"></i></a>
+    </div>
 
     <span class="title">{{ track.origin.title }}</span><span class="author">{{ track.origin.user.username }}</span>
 

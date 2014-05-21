@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('soundcloudPlayerApp')
-  .controller('TracksCtrl', function ($scope, $stateParams, Account, Tracks) {
+  .controller('TracksCtrl', function ($scope, $stateParams, Account, Tracks, Player) {
 
     var query;
 
@@ -22,5 +22,9 @@ angular.module('soundcloudPlayerApp')
     query.then(function (tracks) {
       $scope.tracks = tracks;
     });
+
+    $scope.play = function (track) {
+      Player.play(track);
+    }
 
   });
