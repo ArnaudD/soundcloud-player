@@ -2,13 +2,16 @@
 @import "config";
 
 .controls {
+  $horizontal-padding: 16px;
+  $text-color: #73889C;
+
   height: $controls-height;
   line-height: $controls-height - 4;
   vertical-align: middle;
   position: fixed;
   width: 100%;
   background: $controls-background;
-  color: #73889C;
+  color: $text-color;
   z-index: 999;
   padding-left: $sidebar-width;
   text-align: center;
@@ -75,10 +78,14 @@
     }
   }
 
+  .track-info,
+  .track-progress,
+  .actions {
+    margin-right: $horizontal-padding;
+  }
 
   .track-info {
     display: inline;
-    margin-right: 20px;
     float: right;
 
     .title {
@@ -96,7 +103,6 @@
   .position {
     display: inline;
     font-size: 11px;
-    margin-right: 16px;
   }
 
   .track-progress {
@@ -111,12 +117,31 @@
     background: rgba(255,255,255,.1);
     text-align: left;
     overflow: hidden;
-    margin: 0 16px;
 
     .bar {
       display: inline-block;
       background: #1abc9c;
       height: $h;
+    }
+  }
+
+  .actions {
+    display: inline-block;
+    float: right;
+
+    a {
+      color: $text-color;
+
+      &.active,
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    a:hover .fa-plus,
+    .fa-plus {
+      font-size: 9px;
+      color: $controls-background;
     }
   }
 }

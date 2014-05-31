@@ -11,9 +11,21 @@
   </div>
 
   <div class="position" ng-show="player.progress">
-    <span class="track-progress"><span class="bar" style="width: {{ player.progress }}%;"></span></span>
+    <span class="track-progress" ng-click="setPosition($event)"><span class="bar" style="width: {{ player.progress }}%;"></span></span>
     <span class="time-elapsed">{{ player.position | time }}</span> /
     <span class="total-time"  >{{ player.duration | time }}</span>
+  </div>
+
+  <div class="actions" ng-show="player.progress">
+    <a class="like" ng-class="{active: player.currentTrack.user_favorite}">
+      <i class="fa fa-heart fa-lg"></i>
+    </a>
+    <a class="add">
+      <span class="fa-stack fa-lg">
+        <i class="fa fa-folder fa-stack-1x"></i>
+        <i class="fa fa-plus fa-stack-1x"></i>
+      </span>
+    </a>
   </div>
 
   <div class="track-info" ng-show="player.progress">

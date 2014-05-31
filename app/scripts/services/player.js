@@ -34,6 +34,9 @@ angular.module('soundcloudPlayerApp')
               player.position = Math.floor(this.position / 1000);
               player.progress = (this.position / this.durationEstimate) * 100;
               $rootScope.$broadcast('statusChanged', true);
+            },
+            onfinish: function () {
+              $rootScope.$broadcast('finished');
             }
           });
 
@@ -50,6 +53,10 @@ angular.module('soundcloudPlayerApp')
           this.playing = false;
           $rootScope.$broadcast('statusChanged', true);
         }
+      },
+
+      setPosition: function (percent) {
+        playingSound.setPosition(percent * this.currentTrack.duration);
       }
     }
 

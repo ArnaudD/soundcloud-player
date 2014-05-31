@@ -10,8 +10,17 @@ angular.module('soundcloudPlayerApp')
         if(error){
           defer.reject(error.message);
         }else{
-          console.log(result);
-          defer.resolve(result.length ? result : result.collection);
+          // console.log(result);
+
+          if (!result.length) {
+            result = result.collection;
+          }
+
+          if (result[0] && result[0].origin) {
+            result = _.pluck(result, 'origin');
+          }
+
+          defer.resolve(result);
         }
       });
 

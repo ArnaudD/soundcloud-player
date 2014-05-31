@@ -1,13 +1,13 @@
 
 <ul class="tracks">
-  <li ng-repeat="track in tracks">
-    <div class="artwork" style="background-image:url({{ track.origin.artwork_url }})">
-      <a class="play-button" ng-click="play(track.origin)"><i class="fa fa-play-circle"></i></a>
+  <li ng-repeat="track in tracks" id="track-{{ track.id }}" ng-dblclick="play(track)">
+    <div class="artwork" style="background-image:url({{ track.artwork_url }})">
+      <a class="play-button" ng-click="play(track)"><i class="fa fa-play-circle"></i></a>
     </div>
 
-    <span class="title">{{ track.origin.title }}</span><span class="author">{{ track.origin.user.username }}</span>
+    <span class="title">{{ track.title }}</span><span class="author">{{ track.user.username }}</span>
 
-    <span class="created-at" am-time-ago="track.origin.created_at"></span>
+    <span class="created-at" am-time-ago="track.created_at"></span>
 
   </li>
 </ul>

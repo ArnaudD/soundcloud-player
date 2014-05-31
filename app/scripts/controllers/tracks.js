@@ -20,11 +20,26 @@ angular.module('soundcloudPlayerApp')
     }
 
     query.then(function (tracks) {
+      console.log(tracks);
       $scope.tracks = tracks;
     });
 
     $scope.play = function (track) {
       Player.play(track);
     }
+
+    $scope.$on('finished', function () {
+      var currentId = Player.currentTrack.id,
+          tracks = $scope.tracks,
+          l = tracks.length,
+          i = 0;
+
+      for (; i < l; i++) {
+        if (tracks[i].id === currentId && i + 1 < l) {
+          Player.play(tracks[i + 1]);
+          return;
+        }
+      }
+    });
 
   });
