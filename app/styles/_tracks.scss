@@ -10,9 +10,8 @@ $artwork-size: 44px;
     font-size: 26px;
     color: white;
     text-shadow: 0 0 10px black;
-    background: rgba(0,0,0,.1);
-    line-height: $artwork-size;
-    width: $artwork-size;
+    line-height: 33px;
+    width: 33px;
     text-align: center;
     cursor: pointer;
   }
@@ -34,12 +33,15 @@ $artwork-size: 44px;
   }
 
   .artwork {
-    width: $artwork-size;
-    height: $artwork-size;
+    width: $artwork-size - 6;
+    height: $artwork-size - 6;
     background-size: 100% auto;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 3px;
+    left: 9px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.2) inset;
+    border: 2px solid rgba(0,0,0,.3);
   }
 
   .author {

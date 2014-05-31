@@ -1,33 +1,62 @@
 
-  <div class="sidebar">
-    <ul class="nav nav-sidebar">
-      <li ui-sref-active="active">
-        <a ui-sref="app.user.playlist({user: 'me', playlist: 'stream'})">
-          <i class="fa fa-rss fa-fw"></i> Stream
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.user.playlist({user: 'me', playlist: 'favorites'})">
-          <i class="fa fa-heart fa-fw"></i> Likes
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.user.playlist({user: 'me', playlist: 'sets'})">
-          <i class="fa fa-folder fa-fw"></i> Sets
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.user.playlist({user: 'me', playlist: 'following'})">
-          <i class="fa fa-users fa-fw"></i> Following
-        </a>
-      </li>
-      <li ui-sref-active="active">
-        <a ui-sref="app.user.playlist({user: 'me', playlist: 'followers'})">
-          <i class="fa fa-users fa-fw"></i> Followers
-        </a>
-      </li>
-    </ul>
+<div class="controls" ng-controller="PlayerCtrl">
+
+  <h1><i class="fa fa-volume-up"></i> <span class="open">Open</span>Sound</h1>
+
+  <div class="buttons">
+    <a ng-click="player.back()" class="back-button"><i class="fa fa-fast-backward fa-fw"></i></a>
+    <a ng-click="player.play()" class="play-button" ng-show="!player.playing"><i class="fa fa-play fa-fw"></i></a>
+    <a ng-click="player.pause()" class="pause-button" ng-show="player.playing"><i class="fa fa-pause fa-fw"></i></a>
+    <a ng-click="player.next()" class="next-button"><i class="fa fa-fast-forward fa-fw"></i></a>
   </div>
 
-  <div ui-view class="main-view"></div>
+  <div class="position" ng-show="player.progress">
+    <span class="track-progress"><span class="bar" style="width: {{ player.progress }}%;"></span></span>
+    <span class="time-elapsed">{{ player.position | time }}</span> /
+    <span class="total-time"  >{{ player.duration | time }}</span>
+  </div>
+
+  <div class="track-info" ng-show="player.progress">
+    <span class="title">{{ player.currentTrack.title }}</span>
+    <span class="artist">{{ player.currentTrack.user.username }}</span>
+  </div>
+
+</div>
+
+<div class="sidebar">
+  <ul class="nav nav-sidebar">
+    <li ui-sref-active="active">
+      <a ui-sref="app.user.playlist({user: 'me', playlist: 'stream'})">
+        <i class="fa fa-rss fa-fw"></i> Stream
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref="app.user.playlist({user: 'me', playlist: 'favorites'})">
+        <i class="fa fa-heart fa-fw"></i> Likes
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref="app.user.playlist({user: 'me', playlist: 'sets'})">
+        <i class="fa fa-folder fa-fw"></i> Sets
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref="app.user.playlist({user: 'me', playlist: 'following'})">
+        <i class="fa fa-users fa-fw"></i> Following
+      </a>
+    </li>
+    <li ui-sref-active="active">
+      <a ui-sref="app.user.playlist({user: 'me', playlist: 'followers'})">
+        <i class="fa fa-users fa-fw"></i> Followers
+      </a>
+    </li>
+  </ul>
+
+  <div class="mentions">
+    <a href="https://soundcloud.com"><i class="fa fa-soundcloud fa-fw"></i> Powered by soundcloud</a>
+    <a href="https://github.com/ArnaudD/soundcloud-player"><i class="fa fa-github fa-fw"></i> Fork on Github</a>
+  </div>
+</div>
+
+<div ui-view class="main-view"></div>
 
