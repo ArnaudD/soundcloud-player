@@ -121,31 +121,4 @@
     }
   }
 
-  .actions {
-    display: inline-block;
-    float: right;
-    font-size: 11px;
-
-    a {
-      color: $text-color;
-
-      &.active,
-      &:hover {
-        color: $primary-color;
-      }
-    }
-
-    a:hover .fa-plus,
-    .fa-plus {
-      font-size: 7px;
-      color: $controls-background;
-      padding-top: 1px;
-    }
-
-    .fa-stack,
-    .fa {
-      width: 30px;
-      text-align: center;
-    }
-  }
 }

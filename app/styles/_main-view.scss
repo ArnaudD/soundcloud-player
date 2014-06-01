@@ -6,4 +6,8 @@
 
   padding: $controls-height 0 0 $sidebar-width;
 
+  &.with-track-details{
+    padding-right: $sidebar-width;
+  }
+
 }

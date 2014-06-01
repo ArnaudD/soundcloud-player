@@ -22,9 +22,9 @@ angular.module('soundcloudPlayerApp', [
   .config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
 
     var accountResolver = {
-      account: function (Account) {
+      account: ['Account', function (Account) {
         return Account.connect(false);
-      }
+      }]
     };
 
     $urlRouterProvider.otherwise('/login');

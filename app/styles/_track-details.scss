@@ -1,0 +1,62 @@
+
+@import "config";
+
+.track-details {
+  $sidebar-padding: 25px;
+
+  position: fixed;
+  top: $controls-height;
+  bottom: 0;
+  right: 0;
+  width: $sidebar-width;
+  padding: $sidebar-padding 0;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  background: $track-details-brackground;
+
+  .artwork {
+    margin: 0 auto;
+    border: 2px solid rgba(182, 193, 197, 1);
+  }
+
+  .track {
+    padding: 10px $sidebar-padding;
+    text-align: center;
+  }
+
+  .title,
+  .artist {
+    display: block;
+  }
+
+  .title {
+    color: shade($text-color, 40%)
+  }
+
+  .actions {
+    font-size: 14px;
+    text-align: center;
+
+    a {
+      color: $text-color;
+
+      &.active,
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    a:hover .fa-plus,
+    .fa-plus {
+      font-size: 7px;
+      color: $track-details-brackground;
+      padding-top: 1px;
+    }
+
+    .fa-stack,
+    .fa {
+      width: 30px;
+      text-align: center;
+    }
+  }
+}

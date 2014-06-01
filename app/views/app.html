@@ -16,12 +16,6 @@
     <span class="total-time"  >{{ player.duration | time }}</span>
   </div>
 
-  <div class="actions" ng-show="player.progress">
-    <sc-like-button track-id="player.currentTrack.id"></sc-like-button>
-    <sc-repost-button track-id="player.currentTrack.id"></sc-repost-button>
-    <sc-save-button track-id="player.currentTrack.id"></sc-save-button>
-  </div>
-
   <div class="track-info" ng-show="player.progress">
     <span class="title">{{ player.currentTrack.title }}</span>
     <span class="artist">{{ player.currentTrack.user.username }}</span>
@@ -65,5 +59,22 @@
   </div>
 </div>
 
-<div ui-view class="main-view"></div>
+<div ui-view class="main-view" ng-class="{'with-track-details': trackSelected}"></div>
+
+<div class="track-details" ng-controller="TrackDetailsCtrl" ng-show="trackSelected">
+
+  <sc-artwork track="trackSelected" size="200"></sc-artwork>
+
+  <div class="track">
+    <span class="title">{{ trackSelected.title }}</span>
+    <span class="artist">{{ trackSelected.user.username }}</span>
+  </div>
+
+  <div class="actions">
+    <sc-like-button track-id="trackSelected.id"></sc-like-button>
+    <sc-repost-button track-id="trackSelected.id"></sc-repost-button>
+    <sc-save-button track-id="trackSelected.id"></sc-save-button>
+  </div>
+
+</div>
 
