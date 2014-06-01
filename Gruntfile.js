@@ -18,6 +18,7 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
     aws: grunt.file.readJSON('./aws.json'),
+    cloudfront: grunt.file.readJSON('./cloudfront.json'),
 
     // Project settings
     yeoman: {
@@ -65,7 +66,7 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
+        port: 80,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '0.0.0.0',
         livereload: 35729
@@ -391,6 +392,23 @@ module.exports = function (grunt) {
           }
         ]
       },
+    },
+
+    invalidate_cloudfront: {
+      options: {
+        key: '<%= cloudfront.key %>',
+        secret: '<%= cloudfront.secret %>',
+        distribution: '<%= cloudfront.distribution %>'
+      },
+      production: {
+        files: [{
+          expand: true,
+          cwd: './dist/',
+          src: ['index.html', 'views/*'],
+          filter: 'isFile',
+          dest: ''
+        }]
+      }
     }
   });
 
@@ -442,7 +460,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('deploy', [
     'build',
-    's3-sync'
+    's3-sync',
+    'invalidate_cloudfront'
   ]);
 
   grunt.registerTask('default', [
