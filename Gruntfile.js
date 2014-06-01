@@ -17,6 +17,7 @@ module.exports = function (grunt) {
 
   // Define the configuration for all the tasks
   grunt.initConfig({
+    aws: grunt.file.readJSON('./aws.json'),
 
     // Project settings
     yeoman: {
@@ -372,6 +373,24 @@ module.exports = function (grunt) {
         configFile: 'karma.conf.js',
         singleRun: true
       }
+    },
+
+    's3-sync': {
+      options: {
+        key: '<%= aws.key %>',
+        secret: '<%= aws.secret %>',
+        bucket: '<%= aws.bucket %>',
+        region: '<%= aws.region %>'
+      },
+      your_target: {
+        files: [
+          {
+            root: 'dist',
+            src: ['dist/**'],
+            dest: '/'
+          }
+        ]
+      },
     }
   });
 
@@ -419,6 +438,11 @@ module.exports = function (grunt) {
     'rev',
     'usemin',
     'htmlmin'
+  ]);
+
+  grunt.registerTask('deploy', [
+    'build',
+    's3-sync'
   ]);
 
   grunt.registerTask('default', [
