@@ -57,7 +57,18 @@ angular.module('soundcloudPlayerApp')
 
       setPosition: function (percent) {
         playingSound.setPosition(percent * this.currentTrack.duration);
+      },
+
+      next: function () {
+        this.pause();
+        $rootScope.$broadcast('finished');
+      },
+
+      prev: function () {
+        this.pause();
+        $rootScope.$broadcast('finished'); // TODO
       }
+
     }
 
   });

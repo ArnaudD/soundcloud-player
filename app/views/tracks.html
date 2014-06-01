@@ -7,6 +7,12 @@
 
     <span class="title">{{ track.title }}</span><span class="author">{{ track.user.username }}</span>
 
+    <span class="actions">
+      <sc-like-button track-id="track.id"></sc-like-button>
+      <sc-repost-button track-id="track.id"></sc-repost-button>
+      <sc-save-button track-id="track.id"></sc-save-button>
+    </span>
+
     <span class="created-at" am-time-ago="track.created_at"></span>
 
   </li>

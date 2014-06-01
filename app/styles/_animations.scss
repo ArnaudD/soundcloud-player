@@ -1,0 +1,48 @@
+
+@import "compass/css3";
+
+@mixin keyframes($name) {
+  @-webkit-keyframes $name { @content }
+  @-moz-keyframes $name { @content }
+  @-o-keyframes $name { @content }
+  @keyframes $name { @content }
+}
+
+@mixin animation($value) {
+  -webkit-animation: $value;
+  -moz-animation: $value;
+  -ms-animation: $value;
+  -o-animation: $value;
+  animation: $value;
+}
+
+
+
+@include keyframes(pulse) {
+  0%  { @include transform(scale(1));   }
+  14% { @include transform(scale(1.3)); }
+  28% { @include transform(scale(1));   }
+  42% { @include transform(scale(1.3)); }
+  70% { @include transform(scale(1));   }
+}
+
+.pulse {
+  @include animation(pulse 1300ms ease 0s 2 normal);
+  @include transform(scale(1));
+  @include transform-origin(50%, 50%);
+}
+
+
+
+
+@include keyframes(spin) {
+  0%   { @include transform(rotate(0deg));   }
+  100% { @include transform(rotate(360deg)); }
+}
+
+.spin {
+  @include animation(spin 500ms ease 0s 2 normal);
+  @include transform(scale(1));
+  @include transform-origin(50%, 50%);
+}
+

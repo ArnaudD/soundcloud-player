@@ -17,15 +17,9 @@
   </div>
 
   <div class="actions" ng-show="player.progress">
-    <a class="like" ng-class="{active: player.currentTrack.user_favorite}">
-      <i class="fa fa-heart fa-lg"></i>
-    </a>
-    <a class="add">
-      <span class="fa-stack fa-lg">
-        <i class="fa fa-folder fa-stack-1x"></i>
-        <i class="fa fa-plus fa-stack-1x"></i>
-      </span>
-    </a>
+    <sc-like-button track-id="player.currentTrack.id"></sc-like-button>
+    <sc-repost-button track-id="player.currentTrack.id"></sc-repost-button>
+    <sc-save-button track-id="player.currentTrack.id"></sc-save-button>
   </div>
 
   <div class="track-info" ng-show="player.progress">

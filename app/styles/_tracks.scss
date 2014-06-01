@@ -17,9 +17,15 @@ $artwork-size: 44px;
   }
 
   li {
+    $h: 45px;
+
+    height: $h;
+    line-height: $h;
+    vertical-align: middle;
+
     list-style: none;
     margin: 0;
-    padding: 12px 20px 12px ($artwork-size + 12px);
+    padding: 0 20px 0 ($artwork-size + 12px);
     border-bottom: 1px solid #F5F5F5;
     position: relative;
 
@@ -33,7 +39,7 @@ $artwork-size: 44px;
 
     &.playing {
       &, &:hover {
-        background: #F2784B;
+        background: $playing-color;
         color: white;
       }
     }
@@ -61,7 +67,58 @@ $artwork-size: 44px;
 
   .created-at {
     float: right;
+    color: #C0CAD5;
   }
 
+  .actions {
+    float: right;
+    font-size: 11px;
+    padding-left: 11px;
+
+    a {
+      &:hover,
+      &.active {
+        color: $primary-color;
+      }
+
+      &, &.active:hover {
+        color: #D2D9E2;
+      }
+    }
+
+    .fa-plus {
+      color: white;
+      font-size: 7px;
+      padding-top: 1px;
+    }
+
+    .fa-stack,
+    .fa {
+      width: 24px;
+      text-align: center;
+    }
+  }
+
+  .playing {
+
+    .created-at {
+      color: rgba(white, 0.64);
+    }
+
+    .actions a {
+      .fa-plus {
+        color: $playing-color;
+      }
+
+      &:hover,
+      &.active {
+        color: #1abc9c;
+      }
+
+      &, &.active:hover {
+        color: white;
+      }
+    }
+  }
 
 }
