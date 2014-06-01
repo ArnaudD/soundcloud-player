@@ -13,6 +13,11 @@ angular.module('soundcloudPlayerApp', [
       }
     });
 
+    $rootScope.logout = function () {
+      localStorage.clear();
+      $state.go('login', {}, {location: true});
+    }
+
   })
   .config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
 

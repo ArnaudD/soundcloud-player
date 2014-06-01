@@ -1,0 +1,55 @@
+
+@import "config";
+
+.login-container {
+  padding-top: 100px;
+  background: $primary-color;
+  color: white;
+  text-align: center;
+
+
+  h1 {
+    font-size: 40px;
+  }
+
+  .lead {
+    color: rgba(white, .8);
+    font-size: 19px;
+  }
+
+  .btn-primary {
+    margin-top: 20px;
+    background: $primary-color;
+    border: 2px solid white;
+    font-size: 15px;
+    padding: 7px 20px 10px;
+
+    &:hover {
+      background: white;
+      color: $primary-color;
+    }
+  }
+
+  a {
+    &, &:hover, &:active {
+      color: white;
+      box-shadow: none;
+    }
+  }
+
+  .mentions {
+    padding: 50px;
+    background: rgba(255,255,255,.2);
+    margin-top: 100px;
+
+    a {
+      margin: 0 10px;
+    }
+
+    .fa {
+      font-size: 32px;
+      vertical-align: middle;
+      margin-right: 5px;
+    }
+  }
+}

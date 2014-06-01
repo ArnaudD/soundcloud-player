@@ -7,3 +7,15 @@ body {
 a {
   cursor: pointer;
 }
+
+
+h1 {
+  font-family: 'Bree Serif', serif;
+  font-weight: 300;
+  font-size: 24px;
+  color: rgba(white, .5);
+
+  .open {
+    color: white;
+  }
+}
