@@ -68,14 +68,8 @@
     <!-- endbuild -->
 
     <script src="//connect.soundcloud.com/sdk.js"></script>
-    <script>
-      SC.storage = function () { return window.localStorage; };
-      SC.initialize({
-        client_id: "17339991d463dbb8af20d84340007426",
-        redirect_uri: "http://" + document.location.host + "/sc-callback.html",
-      });
-    </script>
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/soundcloud-sdk-conf.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/services/account.js"></script>
     <script src="scripts/services/collection.js"></script>
