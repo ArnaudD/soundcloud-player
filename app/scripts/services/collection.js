@@ -10,15 +10,19 @@ angular.module('soundcloudPlayerApp')
         if(error){
           defer.reject(error.message);
         }else{
-          // console.log(data);
+          // console.log('raw data', data);
 
           var items = null;
 
-          if (!data.length) {
+          if (data.collection) {
             items = data.collection;
           }
-          else if (data[0] && data[0].origin) {
-            items = _.pluck(data, 'origin');
+          else {
+            items = data;
+          }
+
+          if (angular.isArray(items) && items.length && items[0].origin) {
+            items = _.pluck(items, 'origin');
           }
 
           defer.resolve({items: items, next_href: data.next_href});
