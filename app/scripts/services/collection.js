@@ -25,7 +25,11 @@ angular.module('soundcloudPlayerApp')
             items = _.pluck(items, 'origin');
           }
 
-          defer.resolve({items: items, next_href: data.next_href});
+          defer.resolve({
+            items: items,
+            nextUrl: data.next_href,
+            futureUrl: data.future_href
+          });
         }
       });
 
@@ -42,12 +46,13 @@ angular.module('soundcloudPlayerApp')
 
     cp.refresh = function () {
       var that    = this,
-          firstId = that.items[0].id;
+          firstId = that.items[0].id,
+          url     = that.futureUrl || that.url;
 
-      return fetch(that.url).then(function (data) {
-        var i = 0,
-            items = data.items,
-            l = items.length;
+      return fetch(url).then(function (data) {
+        var items = data.items,
+            l = items.length,
+            i = that.futureUrl ? l : 0;
 
         for(; i < l; i++) {
           if (items[i].id === firstId) {
@@ -55,12 +60,16 @@ angular.module('soundcloudPlayerApp')
           }
         }
 
-        if (i === l) {
+        if (i === l && !that.futureUrl) {
           that.items.splice(items.length - that.items.length);
-          that.nextUrl = data.next_href;
         }
         else {
-          Array.protoype.unshift.apply(that.items, items.slice(0, i));
+          Array.prototype.unshift.apply(that.items, items.slice(0, i));
+          that.futureUrl = data.futureUrl;
+
+          if (!that.nextUrl) {
+            that.nextUrl = data.nextUrl;
+          }
         }
 
       }, function () {
@@ -75,7 +84,11 @@ angular.module('soundcloudPlayerApp')
 
       return fetch(url).then(function (data) {
         Array.prototype.push.apply(that.items, data.items);
-        that.nextUrl = data.next_href;
+        that.futureUrl = data.futureUrl;
+
+        if (!that.nextUrl) {
+          that.nextUrl = data.nextUrl;
+        }
       }, function () {
         // Error, TODO
       });

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('soundcloudPlayerApp')
-  .controller('TracksCtrl', function ($scope, $stateParams, Account, Collection, Player) {
+  .controller('TracksCtrl', function ($scope, $stateParams, $interval, Account, Collection, Player) {
 
     var collection;
 
@@ -43,5 +43,9 @@ angular.module('soundcloudPlayerApp')
         }
       }
     });
+
+    $interval(function() {
+      collection.refresh();
+    }, 30000);
 
   });
