@@ -1,5 +1,5 @@
 
-<ul class="tracks">
+<ul class="tracks" sc-scroll-bottom="loadNext" scroll-threshold="200">
   <li ng-repeat="track in tracks" id="track-{{ track.id }}" ng-dblclick="play(track)" ng-click="showTrackDetails(track)">
     <div class="artwork" style="background-image:url({{ track.artwork_url }})">
       <a class="play-button" ng-click="play(track)"><i class="fa fa-play-circle"></i></a>

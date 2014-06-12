@@ -44,6 +44,10 @@ angular.module('soundcloudPlayerApp')
       }
     });
 
+    $scope.loadNext = function () {
+      collection.loadNext();
+    }
+
     $interval(function() {
       collection.refresh();
     }, 30000);
